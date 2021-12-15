@@ -46,7 +46,7 @@ function findById(user_id) {
       "u.role_id": "r.role_id",
     })
     .select("user_id", "username", "password", "role_name")
-    .where("users.user_id", user_id)
+    .where("u.user_id", user_id).first()
 
   /**
     You will need to join two tables.
