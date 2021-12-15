@@ -28,7 +28,7 @@ router.post("/register", validateRoleName, (req, res, next) => {
     }
    */
 });
-function tokenizer(user) {
+function makeToken(user) {
     const payload = {
       subject: user.user_id,
       role_name: user.role_name,
@@ -42,7 +42,7 @@ function tokenizer(user) {
 
 router.post("/login", checkUsernameExists, (req, res, next) => {
   if (bcrypt.compareSync(req.body.password, req.user.password)) {
-    const token = tokenizer(req.user)
+    const token = makeToken(req.user)
     res.json({
       message: `${req.user.username} is back!`,
       token
