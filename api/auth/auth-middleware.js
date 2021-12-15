@@ -33,8 +33,8 @@ const restricted = (req, res, next) => {
 }
 
 const only = role_name => (req, res, next) => {
-  const { role } = req.decodedToken.role_name
-  if (role_name === role) {
+  req.decodedToken.role_name
+  if (role_name === req.decodedToken.role_name) {
     next()
   } else {
     next({ status: 403, message: "This is not for you" })
